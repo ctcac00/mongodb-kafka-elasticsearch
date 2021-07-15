@@ -34,7 +34,7 @@ Please install:
 * Call `docker-compose up -d` on this directory to stand up the required containers
 * Connect to MongoDB on port 27017 using Compass or mongoshell (default URI: `mongodb://root:changeme@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`)
 * Create a new database and collection called `test.test`
-* Run the script `elasticsearch/setupConnectors.sh` to enable the MongoDB Source Connector and the ElasticSearch Sink Connector 
+* Run the script `elasticsearch/setupConnectors.sh` to enable the MongoDB Source Connector and the ElasticSearch Sink Connector
 
 NOTE: In case of an error message wait a few minutes - it just means that the server is not ready yet
 
