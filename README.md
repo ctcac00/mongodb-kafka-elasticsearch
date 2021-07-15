@@ -31,11 +31,16 @@ Please install:
 
 ## How to run
 
-* Call `docker-compose` on this directory to stand up the required containers
-* Connect to MongoDB on port 27017 using Compass or mongoshell
+* Call `docker-compose up -d` on this directory to stand up the required containers
+* Connect to MongoDB on port 27017 using Compass or mongoshell (default URI: `mongodb://root:changeme@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`)
 * Create a new database and collection called `test.test`
-* Run the script `elasticsearch/setupConnectors.sh` to enable the MongoDB Source Connector and the ElasticSearch Sink Connector
-* Open the Dejavu interface on `http://<your_server>:1358`
+* Run the script `elasticsearch/setupConnectors.sh` to enable the MongoDB Source Connector and the ElasticSearch Sink Connector 
+
+NOTE: In case of an error message wait a few minutes - it just means that the server is not ready yet
+
+NOTE: The connector is setup to be used with the demo app - you might need to modify it if you plan to use a different dataset
+
+* Open the Dejavu interface on `http://<your_server>:1358` (`<your_server>` is most likely `localhost` if you are running this in Mac OS X or Linux)
 * On Dejavu, connect to your ElasticSearch server using the URL `http://<your_server>:9200` and set the basic authorization header like this
 
 |Header|Value|
@@ -43,9 +48,10 @@ Please install:
 |Authorization|Basic ZWxhc3RpYzpjaGFuZ2VtZQ==|
 
 Then use `test.test` as the index you want to connect to
+It should show an empty table at this point
 
 * Add data to the `test.test` collection
-* Reload Dejavu to see the data
+* Reload Dejavu to see the data (see the Note section if you want to use the demo app)
 
 ## Backend API
 
@@ -65,6 +71,12 @@ cd frontend && npm install && npm start
 
 * Open the UI on `http://<your_server>:3001`
 
+Sample searches:
+
+`status contains PUBLISH` - this one will be serviced by MongoDB
+
+`shortDescription contains Adroid` - this one will trigger a full text search serviced by ElasticSearch
+
 ---
 
 ### NOTE
@@ -75,6 +87,8 @@ To import this data run:
 ```bash
 ./importData.sh
 ```
+
+It is a very simple app with limited functionality and its purpose is to server as a Proof Of Concept only!
 
 ---
 
@@ -93,3 +107,7 @@ curl -X POST localhost:8083/connectors/elasticsearch-connector/tasks/0/restart
 ```
 
 You can connect to the Confluent Control center at `http://<your_server>:9021`
+
+## License
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
