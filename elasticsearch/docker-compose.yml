@@ -1,0 +1,54 @@
+version: '2.2'
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
+    container_name: es01
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - es-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - mongo-elastic
+
+  # search01:
+  #   image: docker.elastic.co/enterprise-search/enterprise-search:7.12.1
+  #   container_name: search01
+  #   ports:
+  #     - 3002:3002
+  #   volumes:
+  #     - ./enterprise-search.yml:/usr/share/enterprise-search/config/enterprise-search.yml  
+  #   networks:
+  #     - mongo-elastic
+
+  # kib01:
+  #   image: docker.elastic.co/kibana/kibana:7.12.1
+  #   container_name: kib01
+  #   ports:
+  #     - 5601:5601
+  #   volumes:
+  #     - ./kibana.yml:/usr/share/kibana/config/kibana.yml   
+  #   networks:
+  #     - mongo-elastic
+
+  deja-vu:
+    image: appbaseio/dejavu:3.4.7
+    container_name: deja-vu
+    ports:
+      - 1358:1358
+    networks:
+      - mongo-elastic
+
+volumes:
+  es-data:
+    driver: local
+
+networks:
+  mongo-elastic:
+    driver: bridge

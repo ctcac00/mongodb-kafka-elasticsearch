@@ -1,0 +1,27 @@
+{
+  "query": "mountain",
+  "facets": {
+    "states": { "type": "value", "size": 100 },
+    "world_heritage_site": { "type": "value", "size": 100 }
+  },
+  "result_fields": {
+    "visitors": { "raw": {}, "snippet": { "size": 100, "fallback": true } },
+    "square_km": { "raw": {}, "snippet": { "size": 100, "fallback": true } },
+    "world_heritage_site": {
+      "raw": {},
+      "snippet": { "size": 100, "fallback": true }
+    },
+    "date_established": {
+      "raw": {},
+      "snippet": { "size": 100, "fallback": true }
+    },
+    "description": { "raw": {}, "snippet": { "size": 100, "fallback": true } },
+    "location": { "raw": {}, "snippet": { "size": 100, "fallback": true } },
+    "acres": { "raw": {}, "snippet": { "size": 100, "fallback": true } },
+    "title": { "raw": {}, "snippet": { "size": 100, "fallback": true } },
+    "nps_link": { "raw": {}, "snippet": { "size": 100, "fallback": true } },
+    "states": { "raw": {}, "snippet": { "size": 100, "fallback": true } },
+    "id": { "raw": {}, "snippet": { "size": 100, "fallback": true } }
+  },
+  "page": { "size": 20, "current": 1 }
+}
